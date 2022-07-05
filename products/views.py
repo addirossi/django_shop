@@ -7,6 +7,8 @@ from rest_framework.generics import (ListAPIView, CreateAPIView,
 
 from rest_framework.viewsets import ModelViewSet
 
+from products.filters import ProductPriceFilter
+
 from .models import Product
 from .serializers import ProductSerializer, ProductListSerializer
 
@@ -63,6 +65,8 @@ class ProductDeleteView(DestroyAPIView):
 class ProductViewSet(ModelViewSet):
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
+    # filterset_fields = ['category']
+    filterset_class = ProductPriceFilter
 
     def get_serializer_class(self):
         if self.action == 'list':

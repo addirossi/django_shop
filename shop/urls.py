@@ -16,20 +16,22 @@ Including another URLconf
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
 
 from products.views import (ProductViewSet)
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('products/', ProductViewSet.as_view(
-        {'post': 'create', 'get': 'list'}
-    )),
-    path('products/<int:pk>/', ProductViewSet.as_view(
-        {'get': 'retrieve', 'put': 'update', 
-         'patch': 'partial_update', 'delete': 'destroy'}
-    )),
+    path('account/', include('accounts.urls')),
+    path('products/', include('products.urls')), # products/
+    # path('products/', ProductViewSet.as_view(
+    #     {'post': 'create', 'get': 'list'}
+    # )),
+    # path('products/<int:pk>/', ProductViewSet.as_view(
+    #     {'get': 'retrieve', 'put': 'update', 
+    #      'patch': 'partial_update', 'delete': 'destroy'}
+    # )),
 ]
 
 if settings.DEBUG:
