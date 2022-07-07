@@ -61,7 +61,7 @@ class ProductDeleteView(DestroyAPIView):
 #     queryset = Product.objects.all()
 #     serializer_class = ProductSerializer
 
-
+#TODO: проверка прав (создавать, редактировать и удалять продукты могут только админы)
 class ProductViewSet(ModelViewSet):
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
