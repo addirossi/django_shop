@@ -1,0 +1,116 @@
+# записать в requirements.txt
+'''
+Django
+djangorestframework
+psycopg2-binary # чтобы связываться с postgre
+Pillow #чтобы проект мог с картинками работать
+'''
+
+# устанавливаем вирт.окружение и активируем
+'''
+python3 -m venv env
+source env/bin/activate
+'''
+
+# Если не установилась версия python, то Ctrl+Shift+P и набрать > python: select interpreter и выбрать окружение
+
+# Для развертки проекта
+'''django-admin startproject <название_проекта> .'''
+
+# Появится manage.py, самый главный документ, с помощью которой ведется работа в django
+
+# создаем составные части - приложения (создаются папки)
+'''
+python manage.py startapp <название_приложения>
+'''
+
+# создаем БД в postgres
+'''
+psql -U test_user
+test_user=# create database shop;
+CREATE DATABASE
+'''
+
+# добавить в settings.py в папке shop в раздел INSTALLED APP добавленные auth, product, order
+'''
+# Application definition
+
+INSTALLED_APPS = [
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+
+    'rest_framework',
+
+    'accounts',
+    'products',
+    'order'
+]
+'''
+
+# настроим databases
+'''
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'shop',
+        'HOST': 'localhost',
+        'PORT': 5432,
+        'USER': 'asan',
+        'PASSWORD': '1',
+    }
+}
+'''
+
+# настроим язык и timezone
+'''
+LANGUAGE_CODE = 'en-us' # можно поменять на ru
+
+TIME_ZONE = 'Asia/Bishkek' #'UTC'
+'''
+
+# настроим статик и медиа
+'''
+STATIC_URL = 'static/' #чтобы поддерживать статические файлы
+STATIC_ROOT = os.path.join(BASE_DIR, 'static') 
+
+MEDIA_URL = 'media/' # чтобы поддерживать медиа файлы
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+'''
+
+
+
+# accounts, product, orders создаются по единому шаблону
+# models - за связь с БД. В models.py есть уже import
+# view - как будет отображаться
+
+# далее создаем модель в models.py в папке accounts
+# далее создаем модель в models.py в папке products
+
+"""в настройках указываем модель пользователя"""
+AUTH_USER_MODEL = 'название_приложения.НазваниеМодели' #'accounts.User'
+
+# далее создаем миграцию
+'''python3 manage.py makemigrations'''
+
+# и мигрируем данные
+'''python3 manage.py migrate'''
+
+# если все мигрировано успешно, запускаем сервер
+'''python3 manage.py runserver
+Watching for file changes with StatReloader
+Performing system checks...
+
+System check identified no issues (0 silenced).
+June 29, 2022 - 11:54:05
+Django version 4.0.5, using settings 'shop.settings'
+Starting development server at http://127.0.0.1:8000/
+Quit the server with CONTROL-C.'''
+
+# переходим по ссылке http://127.0.0.1:8000/
+
+email: test@gmail.com
+pass: 1
