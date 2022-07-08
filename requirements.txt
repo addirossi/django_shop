@@ -5,3 +5,5 @@ Pillow==9.1.1
 python-decouple
 django-filter
 djangorestframework_simplejwt
+python-slugify
+drf-yasg
