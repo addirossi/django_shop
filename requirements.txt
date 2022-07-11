@@ -7,3 +7,5 @@ django-filter
 djangorestframework_simplejwt
 python-slugify
 drf-yasg
+gunicorn
+django-cors-headers
