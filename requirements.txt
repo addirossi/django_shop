@@ -8,3 +8,4 @@ djangorestframework_simplejwt
 python-slugify
 drf-yasg
 gunicorn
+whitenoise
