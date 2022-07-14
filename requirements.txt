@@ -9,3 +9,4 @@ python-slugify
 drf-yasg
 gunicorn
 whitenoise
+django-cors-headers

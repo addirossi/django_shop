@@ -1,0 +1,35 @@
+1. Скачать Heroku CLI (https://devcenter.heroku.com/articles/getting-started-with-python#set-up)
+sudo snap install heroku --classic
+brew install heroku/brew/heroku
+
+2. Ввести команду heroku login, 
+в открывшемся окне нажать кнопку Log In
+
+3.heroku create в корневой папке проекта
+
+4. Проверить список удаленных репозиториев
+git remote -v
+
+5. В requirements.txt указываем следующие зависимости:
+gunicorn
+whitenoise
+
+6. В settings.py в MIDDLEWARES добавляем строку:
+'whitenoise.middleware.WhiteNoiseMiddleware'
+
+7. В корень проекта нужно добавить Procfile
+в нем строка:
+
+web: gunicorn <название_проекта>.wsgi
+
+В heroku создаём БД 
+во вкладке resources -> add-ons -> heroku postgres
+добавить во вкладке settings -> config vars 
+переменные окружения
+
+8. git push heroku master
+
+9. heroku run python manage.py migrate
+
+10. heroku run python manage.py createsuperuser
+

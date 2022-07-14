@@ -28,6 +28,7 @@ class RegistrationSerializer(serializers.Serializer):
         user = User.objects.create_user(**self.validated_data)
         user.create_activation_code()
         user.send_activation_code()
+        return user
 
 
 # class ActivationSerializer(serializers.Serializer):
