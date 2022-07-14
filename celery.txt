@@ -1,0 +1,27 @@
+1. В систему установить redis
+
+brew install redis
+sudo apt-get install redis
+
+запустить командой redis-server
+
+2. в requirements.txt установить celery
+
+3. В папке Django проекта (там, где settings.py) создать файл
+_celery.py
+
+В той же папке есть файл __init__.py. В нём нужно указать celery app
+from ._celery import app as celery_app
+__all__ = ['celery_app']
+
+
+4. В settings.py нужно указать настройки для celery и redis
+
+5. В нужном приложении создать файл tasks.py
+В этом файле нужно функцию, 
+которая должна принимать простые 
+объекты (то, что можно сериализовать в json)
+
+в этой функции нужно прописать логику действия (отправка почты)
+
+При вызове таска вызывать его через delay()
